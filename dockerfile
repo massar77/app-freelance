@@ -21,7 +21,7 @@ RUN python -m venv /py && \
     adduser --disabled-password --no-create-home app && \
     mkdir -p /vol/web/static && \
     mkdir -p /vol/web/media && \
-    chown -R .:/code /vol && \
+    # chown -R . :code /vol && \
     chown -R 755 /vol
 
 ENV PATH="/scripts:/py/bin:$PATH"
