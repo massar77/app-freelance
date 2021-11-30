@@ -1,0 +1,32 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_DB=melokaandb
+      - POSTGRES_USER=melokaan
+      - POSTGRES_PASSWORD=melokaan
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+      - ./data/web:/vol/web
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=devsecretkey
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_NAME=melokaandb
+      - DB_USER=melokaan
+      - DB_PASS=melokaan
+    depends_on:
+      - db

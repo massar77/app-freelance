@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-6 col-12 offset-md-3">
+      <div class="card mt-5 shadow">
+        <div class="card-body">
+          <form class="row g-5">
+            <div class="col-12">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail4" />
+            </div>
+            <div class="col-12">
+              <label for="inputPassword4" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword4" />
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-sm">
+                Se connecter
+              </button>
+              <a href="{% url 'signin' %}" class="btn btn-secondary btn-sm float-end"
+                >S'inscrire</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

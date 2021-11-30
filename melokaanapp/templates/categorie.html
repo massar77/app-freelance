@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container-fluid">
+
+  <div class="row row-cols-1 mt-5 pt-5">
+    <div class="col-lg-2 fixed-top mt-5 pt-5 d-none d-sm-block">
+      <nav class="nav flex-column shadow">
+        <div class="list-group">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action active"
+            aria-current="true"
+          >
+            Catégorie
+          </a>
+          {% for categorie_2 in categories_2 %}
+          <a
+            href="{% url 'sous_categorie' categorie_2.slug %}"
+            class="list-group-item list-group-item-action text-truncate"
+            >{{categorie_2.designation}}</a
+          >
+          {% endfor %}
+        </div>
+      </nav>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-2">
+      {% for post in posts %}
+      <div class="col my-2">
+        <div class="card shadow">
+          <h6 class="card-header">{{post.category_1}}/{{post.category_2}}</h6>
+          <div class="card-body">
+            <h6 class="card-title fw-bold">{{post.designation}}</h6>
+            <p class="card-text fw-light">{{post.description}}</p>
+            <h5>
+              <span class="badge bg-danger">{{post.category_1}}</span>
+              <a
+                href="{% url 'post' post.slug %}"
+                class="badge bg-danger stretched-link text-decoration-none"
+                >{{post.category_2}}</a
+              >
+            </h5>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
